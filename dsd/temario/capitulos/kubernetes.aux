@@ -1,0 +1,102 @@
+\relax 
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Kubernetes}{16}{}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}¿Por qué existe Kubernetes?}{16}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}Repaso de algunos términos clave antes de empezar}{16}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Componentes de la Arquitectura}{16}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Contenedores y Despliegue}{16}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Interfaces}{17}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.3}El problema del desvío de infraestructura (Infrastructure Drift) y Kubernetes}{17}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Soluciones y evolución tecnológica}{17}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.4}Contenedores e imágenes}{18}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Aislamiento de dependencias mediante contenedores (Figura 1.1).}}{19}{}\protected@file@percent }
+\newlabel{fig:aislamiento_contenedores}{{5.1}{19}{Contenedores e imágenes}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.5}Fundamentos esenciales de Kubernetes (Core foundation of Kubernetes)}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Flujo de trabajo y construcción de imágenes}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Definición y despliegue en Kubernetes}{20}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Consistencia eventual y escalabilidad}{21}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.6}Características principales de Kubernetes (Kubernetes features)}{21}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Escenario típico de fallo y resiliencia}{22}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Diagrama simplificado de la arquitectura de un clúster de Kubernetes (Figura 1.2).}}{23}{}\protected@file@percent }
+\newlabel{fig:kubernetes_cluster}{{5.2}{23}{Características principales de Kubernetes (Kubernetes features)}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{El ecosistema y sistemas operativos inmutables}{24}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.7}Componentes y arquitectura de Kubernetes (Kubernetes components and architecture)}{24}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Arquitectura general de Kubernetes: Infraestructura, Plano de Control y Nodos de Trabajo (Figura 1.3).}}{25}{}\protected@file@percent }
+\newlabel{fig:kubernetes_architecture}{{5.3}{25}{Componentes y arquitectura de Kubernetes (Kubernetes components and architecture)}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.8}La API de Kubernetes (The Kubernetes API)}{26}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Tipos de recursos y Namespaces}{26}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.9}Ejemplo uno: Un minorista en línea (Example one: An online retailer)}{27}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.10}Ejemplo dos: Una solución de donaciones en línea (Example two: An online giving solution)}{27}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{De máquinas virtuales a la orquestación nativa}{27}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.11}Cuándo no utilizar Kubernetes (When not to use Kubernetes)}{28}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.12}Resumen del capítulo (Summary)}{28}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}¿Por qué el Pod? (Why the Pod?)}{29}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces El Pod como abstracción que encapsula uno o más contenedores (Figura 2.1).}}{30}{}\protected@file@percent }
+\newlabel{fig:pod_concept}{{5.4}{30}{¿Por qué el Pod? (Why the Pod?)}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Ejemplo de una aplicación web (An example web application)}{31}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Limitaciones del enfoque tradicional y nuevos requisitos}{32}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Arquitectura de microservicios de Zeus Zap y sus desafíos de red y almacenamiento (Figura 2.2).}}{33}{}\protected@file@percent }
+\newlabel{fig:zeus_zap_architecture}{{5.5}{33}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Infraestructura para nuestra aplicación web (Infrastructure for our web application)}{34}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}Requisitos operacionales (Operational requirements)}{35}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.4}El Pod como unidad de despliegue (The Pod as a deployment unit)}{35}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Abstracciones de alto nivel}{36}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{El flujo de la aplicación Zeus Zap}{37}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.5}Espacios de nombres de Linux vs. Kubernetes (A bunch of Linux namespaces)}{37}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Relación con los requisitos de la aplicación}{37}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces Controladores de alto nivel (Deployments/StatefulSets) gestionando el ciclo de vida de los Pods de Zeus Zap (Figura 2.3).}}{38}{}\protected@file@percent }
+\newlabel{fig:zeus_zap_pods_flow}{{5.6}{38}{El flujo de la aplicación Zeus Zap}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.6}Kubernetes, la infraestructura y el Pod (Kubernetes, infrastructure, and the Pod)}{39}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{El rol crítico del Kubelet}{39}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces Componentes internos de un nodo de Kubernetes ejecutándose sobre Linux (Figura 2.4).}}{40}{}\protected@file@percent }
+\newlabel{fig:linux_node_components}{{5.7}{40}{Kubernetes, la infraestructura y el Pod (Kubernetes, infrastructure, and the Pod)}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Servicios y el Proxy de Red (kube-proxy)}{40}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.7}El objeto Node de la API (The Node API object)}{41}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Metadatos y Especificaciones (\texttt  {metadata} y \texttt  {spec})}{41}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Estado y Condiciones del Nodo (\texttt  {status})}{42}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Imágenes e Información del Sistema (\texttt  {images} y \texttt  {nodeInfo})}{42}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.8}Controladores y bucles de control (Controllers and control loops)}{43}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Reconciliación de los requisitos previos}{43}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.9}Nuestra aplicación web y el plano de control (Our web application and the control plane)}{44}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.8}{\ignorespaces Componentes principales que integran el plano de control (Control Plane) de Kubernetes (Figura 2.5).}}{45}{}\protected@file@percent }
+\newlabel{fig:kubernetes_control_plane}{{5.8}{45}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.10}Creación de una aplicación web con kubectl (Creating a web application with kubectl)}{46}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.11}El servidor de la API de Kubernetes: \texttt  {kube-apiserver}}{46}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Persistencia y Seguridad}{47}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.12}El programador de Kubernetes: \texttt  {kube-scheduler}}{47}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{El ciclo de vida del Pod y aislamiento del plano de control}{48}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.13}Controladores de infraestructura y el patrón Operator (Infrastructure controllers)}{48}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Definiciones de Recursos Personalizados (CRDs)}{49}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.14}El Administrador de Controladores: KCM y la evolución hacia el CCM}{50}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{El nacimiento del Cloud Controller Manager (CCM)}{50}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Flujo de aprovisionamiento de recursos}{50}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.15}Escalado, alta disponibilidad y gestión de fallos (Scaling, HA, and the control plane)}{51}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.9}{\ignorespaces Secuencia típica y flujo de comunicación en el plano de control al ejecutar el comando \texttt  {kubectl scale} (Figura 2.6).}}{52}{}\protected@file@percent }
+\newlabel{fig:kubernetes_scale_sequence}{{5.9}{52}{Escalado, alta disponibilidad y gestión de fallos (Scaling, HA, and the control plane)}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Niveles de tolerancia a fallos y resiliencia}{52}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.16}Escalado automático (Autoscaling)}{53}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.17}Gestión de costos y densidad de Pods (Cost management)}{54}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Mitigación del vecino ruidoso (\textit  {Noisy Neighbors}) y apagado programado}{54}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.18}Resumen del capítulo (Summary)}{55}{}\protected@file@percent }
+\@setckpt{capitulos/kubernetes}{
+\setcounter{page}{56}
+\setcounter{equation}{0}
+\setcounter{enumi}{3}
+\setcounter{enumii}{0}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{0}
+\setcounter{mpfootnote}{0}
+\setcounter{part}{0}
+\setcounter{chapter}{5}
+\setcounter{section}{2}
+\setcounter{subsection}{18}
+\setcounter{subsubsection}{0}
+\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
+\setcounter{figure}{9}
+\setcounter{table}{0}
+\setcounter{lstnumber}{19}
+\setcounter{lstlisting}{0}
+}

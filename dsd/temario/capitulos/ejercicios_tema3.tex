@@ -1,0 +1,49 @@
+\chapter{Ejercicios Tema 3}
+
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{keyblue}{rgb}{0.1,0.1,0.8}
+
+
+\lstset{
+    backgroundcolor=\color{backcolour},   
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    commentstyle=\color{gray},
+    keywordstyle=\color{keyblue},
+    numbers=left,                    
+    numberstyle=\tiny\color{codegray},
+    stepnumber=1,
+    numbersep=8pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    frame=single, 
+    rulecolor=\color{black!30}
+}
+
+\section{Exclusión Mutua de Anillo}
+
+\begin{lstlisting}[language=Pascal, caption=Algoritmo de Exclusión Mutua de Anillo]
+    Cliente[1..n] {
+        send(solicitar[i]);
+        receive(conceder[i]);
+        // Seccion critica
+        send(liberar[i]);
+        ...
+    }
+
+    Replica[1..n]{
+        ...
+        receive(token[i]);
+        if (solicitar.size()!=0){
+            receive(solicitar[i]);
+            send(conceder[i]);
+            receive(liberar[i]);
+        }
+        send(token[(i mod n) + 1]);
+    }
+\end{lstlisting}

@@ -1,0 +1,99 @@
+\chapter{Ejercicios de Sistemas Distribuidos}
+
+% Configuración de estilos para el código
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{keyblue}{rgb}{0.1,0.1,0.8}
+
+\lstset{
+    backgroundcolor=\color{backcolour},   
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    commentstyle=\color{gray},
+    keywordstyle=\color{keyblue},
+    numbers=left,                    
+    numberstyle=\tiny\color{codegray},
+    stepnumber=1,
+    numbersep=8pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    frame=single, 
+    rulecolor=\color{black!30}
+}
+
+% --- SECCIÓN 1: ASIGNADOR DE RECURSOS ---
+\section{Agenda de contactos}
+Tendremos que implementar los siguientes métodos:
+registrar
+listar
+seleccionar
+deseleccionar
+editar
+consultar
+eliminar
+
+
+\begin{lstlisting}[language=Pascal, caption=Agenda de contactos Versión 1]
+    Servidor :: [i..n]
+    do
+        receive empty(seleccionar) empty(deseleccionar) registrar(contacto)-> {
+            // Código para registrar un nuevo contacto
+        }  
+        [] empty(seleccionar) empty(deseleccionar)receive listar() -> {
+            // Código para listar todos los contactos
+        }
+        [] receive seleccionar(contacto) -> {
+            // Código para seleccionar un contacto específico
+            seleccionados=seleccionados + contactos.count()
+        }
+        [] seleccionados>0 receive deseleccionar(contacto) -> {
+            // Código para deseleccionar un contacto específico
+            empty(seleccionar);
+        }
+        [] empty(deseleccionar) empty seleccionar receive editar(contacto) -> {
+            // Código para editar un contacto específico
+            seleccionados_count==1
+        }
+        [] empty(deseleccionar) empty seleccionar receive consultar(contacto) -> {
+            // Código para consultar un contacto específico
+            seleccionados_count==1
+            send ...
+        }
+        [] empty(seleccionar) empty(deseleccionar) seleccionados>0 receive eliminar(contacto) -> {
+            // Código para eliminar un contacto específico
+        }
+\end{lslisting}
+
+
+\begin{lstlisting}[language=Pascal, caption=Agenda de contactos Versión 2]
+    Servidor :: [i..n]
+    do
+        receive empty(seleccionar) empty(deseleccionar) registrar(contacto)-> {
+            // Código para registrar un nuevo contacto
+        }
+        
+        [] receive seleccionar(contacto) -> {
+            // Código para seleccionar un contacto específico
+             [] seleccionados==1 empty(seleccionar) empty(deseleccionar) receive editar(contacto) -> {
+            // Código para editar un contacto específico
+                send ...
+            }
+            [] seleccionados==1 empty(seleccionar) empty(deseleccionar) receive consultar(contacto) -> {
+                // Código para consultar un contacto específico
+            }
+            [] seleccionados>0 empty(seleccionar) empty(deseleccionar) receive eliminar(contacto) -> {
+                // Código para eliminar un contacto específico
+            }
+            [] seleccionados>0 empty(seleccionar) empty(deseleccionar) receive deseleccionar(contacto) -> {
+                // Código para deseleccionar un contacto específico
+            }
+            [] receive listar() -> {
+            // Código para listar todos los contactos
+            }
+       
+        }
+\end{lslisting}

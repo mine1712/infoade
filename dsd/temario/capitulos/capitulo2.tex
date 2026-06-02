@@ -1,0 +1,138 @@
+
+\chapter{Comunicación y Sincronización de Procesos}
+
+\section{Paso de Mensajes (Message Passing)}
+
+\subsection{Conceptos y Formación de Mensajes}
+\begin{itemize}
+    \item \textbf{Marshalling (Formar):} Proceso de preparar datos para su transmisión.
+    \begin{itemize}
+        \item \textbf{To flat (Poner en plano):} Conversión de estructuras (punteros, grafos) en secuencias lineales.
+        \item \textbf{Representación Estándar:} 
+        \begin{itemize}
+            \item \textbf{XDR (SUN):} Define tipos básicos para evitar problemas de \textit{endianness}.
+            \item \textbf{CDR (CORBA):} (Aporte del libro) Los datos se envían en el formato del emisor y el receptor traduce si es necesario (``el receptor paga'').
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Canal:} Abstracción de red física. Proporciona \texttt{send} y \texttt{receive}.
+\end{itemize}
+
+\subsection{Sincronización y Notaciones}
+\begin{itemize}
+    \item \textbf{Síncrona:} \texttt{send} y \texttt{receive} bloqueantes.
+    \item \textbf{Asíncrona:} Normalmente solo \texttt{receive} bloquea.
+    \begin{itemize}
+        \item \textit{Buffer finito:} \texttt{send} bloquea si el buffer está lleno.
+        \item \textit{Buffer infinito:} \texttt{send} nunca bloquea.
+    \end{itemize}
+    \item \textbf{No bloqueante:} Su ejecución nunca retrasa al proceso. El \texttt{receive} no bloqueante es complejo y requiere \textbf{sondeos (polling)} o \textbf{interrupciones}.
+    \item \textbf{Primitivas adicionales:} \texttt{empty <puerto>} para verificar el estado de la cola.
+\end{itemize}
+
+\section{Destinos de Comunicación y Grupos}
+
+\subsection{Tipos de Destinos (Clasificación UGR)}
+\begin{enumerate}
+    \item \textbf{Proceso:} Referencia directa, punto a punto.
+    \item \textbf{Enlace (Link):} Punto a punto con indirección.
+    \item \textbf{Puerto (Port):} Muchos a uno con indirección.
+    \item \textbf{Buzón (Mailbox):} Muchos a muchos con indirección.
+    \item \textbf{Difusión (Broadcast):} Muchos a muchos (todos).
+    \item \textbf{Selección (Multicast):} Muchos a muchos (grupo).
+\end{enumerate}
+
+
+
+\subsection{Protocolos de Grupo}
+\begin{itemize}
+    \item \textbf{Usos:} Tolerancia a fallos, localización de objetos (ej. ficheros), rendimiento y actualización de eventos.
+    \item \textbf{Propiedades:} \textbf{Atomicidad} (todos o ninguno) y \textbf{Ordenación} (mismo orden para todos).
+    \item \textbf{Fiabilidad:} Construida sobre canales no fiables mediante ACKs (ej. TCP/IP).
+\end{itemize}
+
+\section{RPC (Llamada a Procedimiento Remoto)}
+
+\subsection{Estructura y Módulos}
+\begin{itemize}
+    \item \textbf{Interfaz e IDL:} Se compila la especificación IDL para generar \textbf{Stubs}.
+    \begin{itemize}
+        \item \textit{Cliente:} Convierte llamada local a remota (Marshalling).
+        \item \textit{Servidor:} Selecciona y llama al procedimiento (Unmarshalling).
+    \end{itemize}
+    \item \textbf{Servicio de Ligadura (Binding):} Asociación de nombre a identificador de comunicación.
+    \begin{itemize}
+        \item \textbf{Exportar/Importar:} Los servidores registran, los clientes buscan.
+        \item \textbf{Localización del Binder:} Mediante dirección conocida, variables de entorno del SO o \textbf{Broadcast}.
+    \end{itemize}
+\end{itemize}
+
+\subsection{RPC Asíncrona y Optimizaciones}
+\begin{itemize}
+    \item El cliente envía muchas peticiones sin esperar respuesta inmediata.
+    \item \textbf{Ventaja:} Paralelismo y planificación eficiente en el servidor.
+    \item \textbf{Optimización:} Agrupar varias peticiones en una comunicación (por tiempo o por necesidad de respuesta).
+\end{itemize}
+
+\section{Protocolo Petición-Respuesta (Request-Reply)}
+
+\subsection{Alternativas de Implementación (Coulouris)}
+El libro detalla tres protocolos fundamentales según el nivel de confirmación:
+\begin{itemize}
+    \item \textbf{R (Request):} El cliente no espera respuesta.
+    \item \textbf{RR (Request-Reply):} La respuesta sirve como ACK.
+    \item \textbf{RRA (Request-Reply-Acknowledge):} El cliente confirma que recibió la respuesta. Permite al servidor descartar el histórico.
+\end{itemize}
+
+
+
+\subsection{Modelo de Fallos y Garantías}
+\begin{table}[h]
+\centering
+\small % Reducimos un poco el tamaño de letra para que quepa bien
+\caption{Garantías de envío y semánticas de invocación (Modelo de fallos)}
+\begin{tabular}{|p{3.5cm}|c|c|p{3.5cm}|} % Definimos anchos fijos para las columnas con mucho texto
+\hline
+\textbf{Semántica de Invocación} & \textbf{Reintentar petición} & \textbf{Filtrar duplicados} & \textbf{Reejecutar o Retransmitir} \\ \hline
+\textbf{Quizás} (Maybe) & No & No aplicable & No aplicable \\ \hline
+\textbf{Al menos una vez} (At-least-once) & Sí & No & Reejecutar procedimiento (Idempotencia,Sun RPC) \\ \hline
+\textbf{Exactamente una vez} (At-most-once) & Sí & Sí & Retransmitir respuesta (RPC,RMI,CORBA) \\ \hline
+\end{tabular}
+\end{table}
+\section{Citas (Rendez-vous) y No Determinismo}
+
+\subsection{No Determinismo e Instrucciones Guardadas}
+Uso de guardas \texttt{B ; C -> S}. 
+\begin{itemize}
+    \item \textbf{Semántica:} Éxito si B es cierto y C no retrasa; Bloqueo si B es cierto pero C debe esperar.
+    \item \textbf{Construcciones:} \textbf{IF} (Alternativa no determinista) y \textbf{DO} (Repetitiva).
+\end{itemize}
+
+\subsection{Citas Extendidas}
+Diferencia con RPC: El servidor es un **proceso activo**.
+\begin{itemize}
+    \item \texttt{call <proceso>.<operacion>} vs \texttt{in <operacion> -> S}.
+    \item El servidor puede definir distintas guardas para una misma operación.
+\end{itemize}
+
+\subsection{Ejemplo Ada (Buffer Acotado)}
+\begin{lstlisting}[language=Ada]
+task body Buffer1 is
+begin
+   loop
+      select 
+         when (nElementos < tamBuffer) =>
+            accept Escribir (Elem: TElemento) do
+               ElemLocal := Elem;
+               nElementos := nElementos + 1;
+            end Escribir;
+         or when (nElementos > 0) =>
+            accept Leer (Elem: out TElemento) do
+               Elem := ElemLocal;
+               nElementos := nElementos - 1;
+            end Leer;
+         or terminate;
+      end select;
+   end loop;
+end Buffer1;
+\end{lstlisting}
+

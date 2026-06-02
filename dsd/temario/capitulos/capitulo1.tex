@@ -1,0 +1,169 @@
+\chapter{Capítulo 1}
+
+\section{Características y objetivos}
+\subsection{Compartición de recuros}
+\begin{itemize}
+    \item Recurso: Estos pueden ser tanto hardware como software. 
+    \item Elasticidad: Además cabe la posibilidad de una gestión elástica 
+    ,es decir, se pueden asignar mas recursos de forma momentánea.
+    \item Políticas y métodos de gestión de recursos: Denominación ,Asociación y coordinación.
+    \item Control descentralizado: Soporte a grupos de usarios que trabajan cooperativamente,
+    a esto se les llama groupware
+\end{itemize}
+\subsection{Sistema abierto}
+\begin{itemize}
+    \item Determina si el sistema puede ser personaliza y ampliado
+    \item Tanto software como hardware
+    \item Unix es un ejemplo de sistema abierto
+    \begin{itemize}
+        \item Desarrolladores de aplicaciones pueden usar el sistema operativo sin necesidad de pagar por ello
+        \item Vendedores de hardware, ya que el sistema puede ser ampliado
+        \item Vendedores de software y usarios,ya que es independiente del hardware
+    \end{itemize}
+    \item Utilización de protocolos estándares de comunicación, tales como IPC.
+\end{itemize}
+\subsection{Concurrencia}
+\begin{itemize}
+    \item Concurrencia y paralelismo surgen en los sistemas distribuidos
+    \begin{itemize}
+        \item Actividad independiente de cada usuario
+        \item Independencia entre recursos hardware
+        \item Localización de los procesos en diferentes computadoras
+    \end{itemize}
+    \end{itemize}
+
+\subsection{Escalabilidad}
+\begin{itemize}
+    \item Software debe ser independiente del tamaño.
+    \item El proceso de petición de recursos debe ser independiente del tamaño de la red
+    \item Desafiío, diseñar un software que sea escalable, eficiente y efectivo.Técnicas para conseguirlo:
+    \begin{itemize}
+        \item Utilización de cachés
+        \item Replicación de datos
+        \item Despliege de servicios
+        \item Sistemas abiertos
+    \end{itemize}
+\end{itemize}
+
+\subsection{Tolerancia a fallos}
+\begin{itemize}
+    \item El diseño se basa en dos propuestas:
+    \begin{itemize}
+        \item Redundancia hardware: Si un componente falla, otro puede tomar su lugar.
+        \item Redundancia software: Si un proceso falla, otro puede tomar su lugar.
+\end{itemize}
+\end{itemize}
+\subsection{Transparencia}
+\begin{itemize}
+    \item Ver el sistema como un todo
+    \item Principial objetivo de diseño del software de sistemas distribuidos
+    \item Tipos de transparencia básica:
+    \begin{itemize}
+        \item Transparencia de acceso: El usuario no debe preocuparse por la ubicación de los recursos.
+        \item Transparencia de localización: El usuario no debe preocuparse por la ubicación física de los recursos.    
+        \item Transperencia de concurrencia: Se puede dar operaciones concurrentes sobre los mismos recursos sin que interfieran entre sí.
+    \end{itemize}
+    \item Tipos de transparencia avanzada:
+    \begin{itemize}
+        \item Transparencia de replicación: El usuario no debe preocuparse por la existencia de múltiples copias de un recurso.
+        \item Transparencia de fallo: Ocultación de fallos de hardware o software.
+        \item Transparencia de migración: Migración de entidades sin afectas a programas o usuarios.
+        \item Transparencia de rendimiento: El sistema puede adaptarse a las cargas de trabajo variables
+        \item Transparencia de escalabilidad: El sistema puede crecer sin cambiar las estructuras de los sistemas.
+    \end{itemize}
+    
+\end{itemize}
+
+\section{Paradigmas de Aplicaciones Distribuidas}
+\begin{itemize}
+
+
+\item Aplicaciones paralelas de alto rendimiento:
+    \begin{itemize}
+        \item Decrementan el tiempo de respuesta
+        \item Ventaja de escalabilidad frente a multiprocesadores
+        \item Se clasifica en cuanto al grano de paralelismo:
+        \begin{itemize}
+            \item Grano fino: ++Tiempo Comunicacion, --Tiempo computación.
+            \item Grano medio , adecuado para S.D y débilmente acoplados.
+            \item Grano grueso: ++Tiempo computación, --Tiempo comunicacion.
+    \end{itemize}
+\item Aplicaciones tolerancia a fallos:
+    \begin{itemize}
+        \item Incrementan fiabilidad y disponibilidad
+        \item Propiedad de fallo parcial
+        \item Seguridad mediante la replicación en varios nodos
+    \end{itemize}
+\item Aplicaciones con especialización funcional:
+    \begin{itemize}
+        \item Cada aplicación es una colección de servicios
+        \item Forma natural de diseñar estas aplicaciones es mediante un S.D con implementaciones alternativas (replicada,distribuidad,centralizada)
+        \item Proporcionan alto rendimiento y seguridad
+        \item Comunicación entre servicios
+        \item Fácil escalabilidad de las aplicaciones
+    \end{itemize}
+\item Aplicaciones inherentemente distribuidas:
+    \begin{itemize}
+        \item Groupware: Sistema basado en computadores que soportan la colaboración entre usuarios.
+        \begin{itemize}
+            \item Ejemplos:
+            \item Correo electrónico
+            \item Software de gestión de flujos de trabajo
+            \item Sistema Enterpirse Resource Planning (ERP)
+            \item Business Process Management (BPMS)
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+\end{itemize}
+\section{Características y objetivos emergentes en nuevos paradigmas de Computación Distribuida:}
+\begin{itemize}
+    \item Modularidad
+    \item Cross platform(Interoperabilidad)
+    \item Seguridad/privacidad
+    \item Calidad de servicio
+    \item Extensibilidad
+    \item Movilidad
+    \item Amigabilidad de las interfaces
+    \item Elasticidad y escalabilidad
+    \item Dispositovs móviles + LAN inalámbricas, sistemas distribuidos con clientes y tal vez servidores, móviles
+    \item Permanecen los principios de diseño de sistemas distribuidos
+    \item Aspectos adicionales a considerar:
+    \begin{itemize}
+        \item Variaciones impredecibles en la calidad de conexión de red
+        \item Fiabilidad y robustez reducidad de los dispositivos móviles
+        \item Potencias de los recursos reducida, derivada de las limitaciones de tamaño y peso
+        \item Consumo de batería
+    \end{itemize}
+    \item Campo de investigación y desarrollo muy activo
+    \item Áreas de trabajo:
+    \begin{itemize}
+        \item Redes móviles: IP, protocolos, TCP,UDP, etc.
+        \item Acceso móvil a la información: Trabajo en modo desconexión,adaptación al ancho de banda, gestión de memoria.
+        \item Soporte a aplicaciones adaptativas: Gestión de recursos adaptativa, transcoding.
+        \item Técnicas de ahorro de energía: Gestión de energía adaptativa.
+        \item Sensibilidad al contexto: Detección de la ubicación para determinar cambio en el comportamiento.
+    \end{itemize}
+    \item Invisibilidad
+          \begin{itemize}
+            \item Ideal expresado por Mark Weiser
+            \item Minimizar las distracciones del usuario por el uso de la tecnología
+            \item Si la tecnología no distrae, puede usarse a un nivel subconsciente
+            \item Equilibrio frente a la ausencia total de notificaciones para evitar sorpresas posteriores
+            \item Ejemplo: Conmutación transparente entre el uso de una red Wi-Fi y una conexión 4G.
+          \end{itemize} 
+    \item{Escalabilidad localizada}
+    \begin{itemize}
+        \item Al crecer el nivel de sofistificación de los espacios, aumentan las interacciones del usuario con el entorno.
+        \item Consecuencias en el consumo de ancho de banda, energía y aparición de distractores.
+        \item Escalabilidad
+        \begin{itemize}
+            \item Hasta ahora no importaba la distancia o el lugar del usuario.
+            \item Ahora el número de interacciones debe reducirse en función de como se desplazan los usuarios.
+        \end{itemize}
+    \end{itemize}
+    \item{Enmascaramiento de la condición desigual}
+\end{itemize}
+    
+
+
+

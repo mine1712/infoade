@@ -1,0 +1,25 @@
+\documentclass[12pt,a4paper]{report}
+
+% 1. CARGAMOS EL PREÁMBULO (Todos los paquetes van aquí dentro)
+\input{preambulo.tex}
+
+\begin{document}
+
+% 2. LA PORTADA (Va justo después de empezar el documento)
+\input{portada.tex}
+
+% 3. ÍNDICE
+\newpage
+\tableofcontents
+\newpage
+
+% 4. LOS CAPÍTULOS
+\include{capitulos/capitulo1}
+\include{capitulos/capitulo2}
+\include{capitulos/ejercicios}
+\include{capitulos/ejercicios_tema3}
+\include{capitulos/kubernetes}
+
+% \include{capitulos/capitulo2}
+
+\end{document}

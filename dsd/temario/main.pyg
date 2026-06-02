@@ -1,0 +1,38 @@
+unidades: set <int>
+pendientes: queue<int>
+disponibles:=len(unidades)
+indice_cliente: int
+
+Servidor{
+    while true{
+        if pendientes not empty && unidades not empty{
+            cliente = pendientes.pop()
+            unidad = unidades.get()
+            disponibles--;
+            send respuesta[cliente](unidad)
+        }
+        while true{
+            receive peticion(i,operacion,unidad)
+            switch operacion{
+                case ADQUIRIR:
+                    if unidades not empty{
+                        send respuesta[i](unidades.get())
+                        disponibles--
+                    }
+                    else{
+                        pendientes.push(i)
+                    }
+                case LIBERAR:
+                    if pendientes not empty{
+                        cliente=pendientes.pop()
+                        send respuesta[cliente](unidad)
+                    }
+                    else{
+                        unidades.add(unidad)
+                        disponibles++;
+                    }
+            }
+        }
+    }
+}
+\end{lstlisting}

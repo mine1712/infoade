@@ -1,0 +1,113 @@
+Implementar una barrera para
+$N$ procesos usando un servidor central que no deje pasar a 
+nadie hasta que el último haya llegado
+Paso de Mensajes (Asíncrono/Canales).
+port(id_cliente)
+chan llegada[1..n]()
+var esperando[1..n]: set of int
+Servidor Barrera{
+    contador=0
+    while true do
+    receive llegada(id_cliente)
+    contador++
+    esperando[contador] = id_cliente
+    if contador == N then
+        for i in 1..N do
+            send llegada(esperando[i])
+        contador = 0  
+    
+}
+
+Citas (Rendezvous) / Call-In.
+// Definicion de puntos de entrada (entry calls)
+op iniciar_lectura();
+op terminar_lectura();
+op iniciar_escritura();
+op terminar_escritura();
+
+Servidor LectoresEscritores{
+    var n_lectores = 0;
+    var escribiendo=false
+
+    do true ->
+        in iniciar_lectura() and escribiendo=false->
+            n_lectors++
+        
+        [] terminar_lectura()->
+            n_lectores--
+        
+        [] iniciar_escritura() and n_lectores==0 and escribiendo=false->
+            escribiendo=true
+        
+        [] terminar_escritura()->
+            escribiendo=false
+        nin
+    od
+
+}
+
+Servidor de Chat (Broadcast) Paso de Mensajes con Mailbox
+// Canales de entrada al servidor (Cualquiera los usa)
+mailbox login(int id_cliente);
+mailbox logout(int id_cliente);
+mailbox enviar_mensaje(int id_emisor, string texto); 
+
+// Canales de salida (Uno para cada cliente potencial)
+chan buzon_cliente[1..M](string texto);
+
+Servidor Chat{
+    var clientes:set of int;
+
+    do true->
+
+        receive login(id_cliente)->
+            meter_cliente(id_cliente)
+
+        [] receive logout(id_cliente)->
+            sacar_cliente(id_cliente)
+        [] receive enviar_mensaje(id_emisor, texto)->
+            for each id_cliente in clientes do
+                send buzon_cliente[id_cliente](texto)
+    
+}
+
+
+
+
+
+
+
+type clase_op = enum (ENTRAR, SALIR);
+port peticion(int id_cliente, clase_op operacion);
+chan respuesta[1..n](int resultado);
+Servidor Parking{
+    var plaza_disponible = MAX_PLAZAS;
+    var esperando: queue of int;
+
+    while true do
+        receive peticion(id_cliente,operacion)
+            switch(operacion)
+                case ENTRAR:
+                    if plaza_disponible > 0 && empty(esperando) then
+                        plaza_disponible--;
+                        send respuesta[id_cliente](1); // Aceptado
+                    else
+                        enqueue(esperando, id_cliente); // Espera
+                case SALIR:
+                    plaza_disponible++;
+                    if not empty(esperando) then
+                        proximo = dequeue(esperando);
+                        plaza_disponible--;
+                        send respuesta[proximo](1); // Aceptado al siguiente
+    
+}
+
+Servidor Parking{
+    do true->
+        in Entrar() && libres>0->
+            plaza_disponible--;
+        []in Salir()->
+            plaza_disponible++;
+        nin
+    od
+}

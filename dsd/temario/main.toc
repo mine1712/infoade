@@ -1,0 +1,95 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{\numberline {1}Capítulo 1}{2}{}%
+\contentsline {section}{\numberline {1.1}Características y objetivos}{2}{}%
+\contentsline {subsection}{\numberline {1.1.1}Compartición de recuros}{2}{}%
+\contentsline {subsection}{\numberline {1.1.2}Sistema abierto}{2}{}%
+\contentsline {subsection}{\numberline {1.1.3}Concurrencia}{3}{}%
+\contentsline {subsection}{\numberline {1.1.4}Escalabilidad}{3}{}%
+\contentsline {subsection}{\numberline {1.1.5}Tolerancia a fallos}{3}{}%
+\contentsline {subsection}{\numberline {1.1.6}Transparencia}{3}{}%
+\contentsline {section}{\numberline {1.2}Paradigmas de Aplicaciones Distribuidas}{4}{}%
+\contentsline {section}{\numberline {1.3}Características y objetivos emergentes en nuevos paradigmas de Computación Distribuida:}{5}{}%
+\contentsline {chapter}{\numberline {2}Comunicación y Sincronización de Procesos}{7}{}%
+\contentsline {section}{\numberline {2.1}Paso de Mensajes (Message Passing)}{7}{}%
+\contentsline {subsection}{\numberline {2.1.1}Conceptos y Formación de Mensajes}{7}{}%
+\contentsline {subsection}{\numberline {2.1.2}Sincronización y Notaciones}{7}{}%
+\contentsline {section}{\numberline {2.2}Destinos de Comunicación y Grupos}{8}{}%
+\contentsline {subsection}{\numberline {2.2.1}Tipos de Destinos (Clasificación UGR)}{8}{}%
+\contentsline {subsection}{\numberline {2.2.2}Protocolos de Grupo}{8}{}%
+\contentsline {section}{\numberline {2.3}RPC (Llamada a Procedimiento Remoto)}{8}{}%
+\contentsline {subsection}{\numberline {2.3.1}Estructura y Módulos}{8}{}%
+\contentsline {subsection}{\numberline {2.3.2}RPC Asíncrona y Optimizaciones}{9}{}%
+\contentsline {section}{\numberline {2.4}Protocolo Petición-Respuesta (Request-Reply)}{9}{}%
+\contentsline {subsection}{\numberline {2.4.1}Alternativas de Implementación (Coulouris)}{9}{}%
+\contentsline {subsection}{\numberline {2.4.2}Modelo de Fallos y Garantías}{9}{}%
+\contentsline {section}{\numberline {2.5}Citas (Rendez-vous) y No Determinismo}{9}{}%
+\contentsline {subsection}{\numberline {2.5.1}No Determinismo e Instrucciones Guardadas}{9}{}%
+\contentsline {subsection}{\numberline {2.5.2}Citas Extendidas}{10}{}%
+\contentsline {subsection}{\numberline {2.5.3}Ejemplo Ada (Buffer Acotado)}{10}{}%
+\contentsline {chapter}{\numberline {3}Ejercicios de Sistemas Distribuidos}{11}{}%
+\contentsline {section}{\numberline {3.1}Asignador de Recursos}{11}{}%
+\contentsline {section}{\numberline {3.2}Servidor de Ficheros}{12}{}%
+\contentsline {section}{\numberline {3.3}Buffer Acotado}{13}{}%
+\contentsline {section}{\numberline {3.4}Ejercicio Examen Banco}{13}{}%
+\contentsline {chapter}{\numberline {4}Ejercicios Tema 3}{15}{}%
+\contentsline {section}{\numberline {4.1}Exclusión Mutua de Anillo}{15}{}%
+\contentsline {chapter}{\numberline {5}Kubernetes}{16}{}%
+\contentsline {section}{\numberline {5.1}¿Por qué existe Kubernetes?}{16}{}%
+\contentsline {subsection}{\numberline {5.1.1}Repaso de algunos términos clave antes de empezar}{16}{}%
+\contentsline {subsection}{\numberline {5.1.2}Componentes de la Arquitectura}{16}{}%
+\contentsline {subsubsection}{Contenedores y Despliegue}{16}{}%
+\contentsline {subsubsection}{Interfaces}{17}{}%
+\contentsline {subsection}{\numberline {5.1.3}El problema del desvío de infraestructura (Infrastructure Drift) y Kubernetes}{17}{}%
+\contentsline {subsubsection}{Soluciones y evolución tecnológica}{17}{}%
+\contentsline {subsection}{\numberline {5.1.4}Contenedores e imágenes}{18}{}%
+\contentsline {subsection}{\numberline {5.1.5}Fundamentos esenciales de Kubernetes (Core foundation of Kubernetes)}{19}{}%
+\contentsline {subsubsection}{Flujo de trabajo y construcción de imágenes}{19}{}%
+\contentsline {subsubsection}{Definición y despliegue en Kubernetes}{20}{}%
+\contentsline {subsubsection}{Consistencia eventual y escalabilidad}{21}{}%
+\contentsline {subsection}{\numberline {5.1.6}Características principales de Kubernetes (Kubernetes features)}{21}{}%
+\contentsline {subsubsection}{Escenario típico de fallo y resiliencia}{22}{}%
+\contentsline {subsubsection}{El ecosistema y sistemas operativos inmutables}{24}{}%
+\contentsline {subsection}{\numberline {5.1.7}Componentes y arquitectura de Kubernetes (Kubernetes components and architecture)}{24}{}%
+\contentsline {subsection}{\numberline {5.1.8}La API de Kubernetes (The Kubernetes API)}{26}{}%
+\contentsline {subsubsection}{Tipos de recursos y Namespaces}{26}{}%
+\contentsline {subsection}{\numberline {5.1.9}Ejemplo uno: Un minorista en línea (Example one: An online retailer)}{27}{}%
+\contentsline {subsection}{\numberline {5.1.10}Ejemplo dos: Una solución de donaciones en línea (Example two: An online giving solution)}{27}{}%
+\contentsline {subsubsection}{De máquinas virtuales a la orquestación nativa}{27}{}%
+\contentsline {subsection}{\numberline {5.1.11}Cuándo no utilizar Kubernetes (When not to use Kubernetes)}{28}{}%
+\contentsline {subsection}{\numberline {5.1.12}Resumen del capítulo (Summary)}{28}{}%
+\contentsline {section}{\numberline {5.2}¿Por qué el Pod? (Why the Pod?)}{29}{}%
+\contentsline {subsection}{\numberline {5.2.1}Ejemplo de una aplicación web (An example web application)}{31}{}%
+\contentsline {subsubsection}{Limitaciones del enfoque tradicional y nuevos requisitos}{32}{}%
+\contentsline {subsection}{\numberline {5.2.2}Infraestructura para nuestra aplicación web (Infrastructure for our web application)}{34}{}%
+\contentsline {subsection}{\numberline {5.2.3}Requisitos operacionales (Operational requirements)}{35}{}%
+\contentsline {subsection}{\numberline {5.2.4}El Pod como unidad de despliegue (The Pod as a deployment unit)}{35}{}%
+\contentsline {subsubsection}{Abstracciones de alto nivel}{36}{}%
+\contentsline {subsubsection}{El flujo de la aplicación Zeus Zap}{37}{}%
+\contentsline {subsection}{\numberline {5.2.5}Espacios de nombres de Linux vs. Kubernetes (A bunch of Linux namespaces)}{37}{}%
+\contentsline {subsubsection}{Relación con los requisitos de la aplicación}{37}{}%
+\contentsline {subsection}{\numberline {5.2.6}Kubernetes, la infraestructura y el Pod (Kubernetes, infrastructure, and the Pod)}{39}{}%
+\contentsline {subsubsection}{El rol crítico del Kubelet}{39}{}%
+\contentsline {subsubsection}{Servicios y el Proxy de Red (kube-proxy)}{40}{}%
+\contentsline {subsection}{\numberline {5.2.7}El objeto Node de la API (The Node API object)}{41}{}%
+\contentsline {subsubsection}{Metadatos y Especificaciones (\texttt {metadata} y \texttt {spec})}{41}{}%
+\contentsline {subsubsection}{Estado y Condiciones del Nodo (\texttt {status})}{42}{}%
+\contentsline {subsubsection}{Imágenes e Información del Sistema (\texttt {images} y \texttt {nodeInfo})}{42}{}%
+\contentsline {subsection}{\numberline {5.2.8}Controladores y bucles de control (Controllers and control loops)}{43}{}%
+\contentsline {subsubsection}{Reconciliación de los requisitos previos}{43}{}%
+\contentsline {subsection}{\numberline {5.2.9}Nuestra aplicación web y el plano de control (Our web application and the control plane)}{44}{}%
+\contentsline {subsection}{\numberline {5.2.10}Creación de una aplicación web con kubectl (Creating a web application with kubectl)}{46}{}%
+\contentsline {subsection}{\numberline {5.2.11}El servidor de la API de Kubernetes: \texttt {kube-apiserver}}{46}{}%
+\contentsline {subsubsection}{Persistencia y Seguridad}{47}{}%
+\contentsline {subsection}{\numberline {5.2.12}El programador de Kubernetes: \texttt {kube-scheduler}}{47}{}%
+\contentsline {subsubsection}{El ciclo de vida del Pod y aislamiento del plano de control}{48}{}%
+\contentsline {subsection}{\numberline {5.2.13}Controladores de infraestructura y el patrón Operator (Infrastructure controllers)}{48}{}%
+\contentsline {subsubsection}{Definiciones de Recursos Personalizados (CRDs)}{49}{}%
+\contentsline {subsection}{\numberline {5.2.14}El Administrador de Controladores: KCM y la evolución hacia el CCM}{50}{}%
+\contentsline {subsubsection}{El nacimiento del Cloud Controller Manager (CCM)}{50}{}%
+\contentsline {subsubsection}{Flujo de aprovisionamiento de recursos}{50}{}%
+\contentsline {subsection}{\numberline {5.2.15}Escalado, alta disponibilidad y gestión de fallos (Scaling, HA, and the control plane)}{51}{}%
+\contentsline {subsubsection}{Niveles de tolerancia a fallos y resiliencia}{52}{}%
+\contentsline {subsection}{\numberline {5.2.16}Escalado automático (Autoscaling)}{53}{}%
+\contentsline {subsection}{\numberline {5.2.17}Gestión de costos y densidad de Pods (Cost management)}{54}{}%
+\contentsline {subsubsection}{Mitigación del vecino ruidoso (\textit {Noisy Neighbors}) y apagado programado}{54}{}%
+\contentsline {subsection}{\numberline {5.2.18}Resumen del capítulo (Summary)}{55}{}%

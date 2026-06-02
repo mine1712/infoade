@@ -1,0 +1,213 @@
+\chapter{Ejercicios de Sistemas Distribuidos}
+
+% Configuración de estilos para el código
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{keyblue}{rgb}{0.1,0.1,0.8}
+
+\lstset{
+    backgroundcolor=\color{backcolour},   
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    commentstyle=\color{gray},
+    keywordstyle=\color{keyblue},
+    numbers=left,                    
+    numberstyle=\tiny\color{codegray},
+    stepnumber=1,
+    numbersep=8pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    frame=single, 
+    rulecolor=\color{black!30}
+}
+
+% --- SECCIÓN 1: ASIGNADOR DE RECURSOS ---
+\section{Asignador de Recursos}
+Diseño de un asignador de recursos con gestión de cola de espera manual (Paso de Mensajes).
+
+
+\begin{lstlisting}[language=Pascal, caption=Asignador de Recursos]
+// Definicion de canales
+type clase_op = enum (ADQUIRIR, LIBERAR);
+port peticion (int id_cliente, clase_op operacion, int unidad);
+chan respuesta [1..n](int unidad_asignada);
+
+Servidor {
+    var unidades: set of int; 
+    var pendientes: queue of int;
+    var disponibles: int := MAX_UNIDADES;
+
+    while true {
+        // 1. PRIORIDAD: Si hay alguien esperando y hay recursos, desbloquear
+        if (not empty(pendientes) && disponibles > 0) {
+            cliente = dequeue(pendientes);
+            unidad = extraer(unidades);
+            disponibles--;
+            send respuesta[cliente](unidad);
+        }
+
+        // 2. ESCUCHA: El servidor atiende peticiones
+        receive peticion(i, operacion, uni)
+        switch operacion {
+            case ADQUIRIR:
+                if (disponibles > 0) {
+                    send respuesta[i](extraer(unidades));
+                    disponibles--;
+                } else {
+                    // Bloqueo logico: No hay send, el cliente espera
+                    enqueue(pendientes, i);
+                }
+            case LIBERAR:
+                if (empty(pendientes)) {
+                    insertar(unidades, uni);
+                    disponibles++;
+                } else {
+                    // Entrega directa al siguiente en la cola
+                    proximo = dequeue(pendientes);
+                    send respuesta[proximo](uni);
+                }
+        }
+    }
+}
+\end{lstlisting}
+
+% --- SECCIÓN 2: SERVIDOR DE FICHEROS ---
+\section{Servidor de Ficheros}
+Gestión de sesiones mediante canales dinámicos y mailbox.
+
+\begin{lstlisting}[caption=Servidor de Ficheros]
+// Canales: Mailbox para apertura, array para operaciones
+mailbox abrir(string nombref, int id_cli);
+chan leer[1..n](...), escribir[1..n](...), cerrar[1..n](...);
+chan respuesta_abrir[1..n](int descriptor);
+do receive abrir(nombref, id_cli) ->
+    // Se asigna el canal 'i' (descriptor de fichero)
+    send respuesta_abrir[id_cli](i); 
+    
+    do // Bucle de sesion privada para el fichero i
+        receive leer[i](datos) -> 
+            read(i, datos); 
+            send respuesta_cli[id_cli](datos);
+            
+        [] receive escribir[i](datos) -> 
+            write(i, datos);
+            send respuesta_cli[id_cli](ok);
+            
+        [] receive cerrar[i]() -> 
+            close(i);
+            send respuesta_cli[id_cli](bye);
+            break; // Salida del bucle interno
+    od
+    fichero_abierto[i] = false;
+od
+\end{lstlisting}
+
+% --- SECCIÓN 3: BUFFER ACOTADO ---
+\section{Buffer Acotado}
+Implementación mediante Órdenes Guardadas (Estilo Ada/CSP).
+
+\begin{lstlisting}[caption=Buffer Acotado con Guardas]
+Bufferacotado::
+    op poner(dato: T);
+    op tomar(var res: T);
+    
+    var buffer[1..n]: T;
+    var cab: int := 1; cola: int := 1; contador: int := 0;
+
+    do true ->
+        in poner(dato) and (contador < n) ->
+            buffer[cola] := dato;
+            cola := (cola mod n) + 1;
+            contador++;
+        [] tomar(res) and (contador > 0) ->
+            res := buffer[cab];
+            cab := (cab mod n) + 1;
+            contador--;
+        nin
+    od
+\end{lstlisting}
+
+% --- SECCIÓN 4: BANCO (CON IF) ---
+\section{Ejercicio Examen Banco}
+Servidor con estado, tokens de seguridad y lógica de control mediante IF.
+
+mailbox identificar(string nombre, string contra, int j);
+// Operaciones privadas: Un array de canales, uno para cada servidor [1..n]
+chan SeleccionarCuenta[1..n](int token, TCuenta cuenta, int j);
+chan ConsultarSaldo[1..n](int token, int j);
+chan IngresarDinero[1..n](int token, float cantidad, int j);
+chan RetirarDinero[1..n](int token, float cantidad, int j);
+chan BloquearCuenta[1..n](int token, int j);
+chan SalirCliente[1..n](int token, int j);
+
+// Respuestas al cliente: Un array de canales para los 'm' clientes del sistema
+chan respuesta_id[1..m](int token, TLista lista);
+chan respuesta_op[1..m](any resultado);
+\begin{lstlisting}[caption=Servidor Bancario con Estado]
+Servidor::[i:1..n]
+{
+    // Variables locales del proceso i
+    var salir[i]: boolean := false;
+    var seleccionada[i]: TCuenta := 0;
+    var tipo[i]: int := 0;
+    var token_sesion[i]: int;
+
+    while (true)
+    {
+        // Fase 1: Identificación (Cualquier servidor libre atiende)
+        receive identificar(nombre, contrasena, j); 
+
+        if (comprobar(nombre, contrasena)) 
+        {
+            send respuesta_id[j](token_sesion[i], listaCuentas);
+            salir[i] := false; 
+
+            // Fase 2: Sesión Privada (Bucle de operaciones)
+            while(salir[i] == false) 
+            {
+                // Operación sin guarda: siempre se puede seleccionar cuenta
+                if receive SeleccionarCuenta[i](token, cuenta, j) ->
+                    seleccionada[i] = cuenta;
+                    tipo[i] = cuenta.TipoAcceso;
+                    send respuesta_op[j](tipo[i]);
+
+                // Operaciones con GUARDAS: Solo si hay cuenta seleccionada != 0
+                
+                // Consultar Saldo
+                [] seleccionada[i] != 0; receive ConsultarSaldo[i](token, j) ->
+                    send respuesta_op[j](seleccionada[i].saldo);
+
+                // Ingresar Dinero (Requiere cuenta y permiso de escritura 'tipo')
+                [] seleccionada[i] != 0 && tipo[i]; receive IngresarDinero[i](token, cantidad, j) ->
+                    seleccionada[i].saldo += cantidad;
+                    send respuesta_op[j](seleccionada[i].saldo);
+
+                // Retirar Dinero (Uso de IF interno para control de saldo)
+                [] seleccionada[i] != 0 && tipo[i]; receive RetirarDinero[i](token, cantidad, j) ->
+                    if (cantidad <= seleccionada[i].saldo) {
+                        seleccionada[i].saldo -= cantidad;
+                        send respuesta_op[j](seleccionada[i].saldo);
+                    } else {
+                        send respuesta_op[j](0); // Error: Saldo insuficiente
+                    }
+
+                // Bloquear Cuenta
+                [] seleccionada[i] != 0 && tipo[i]; receive BloquearCuenta[i](token, j) ->
+                    seleccionada[i] = 0;
+                    send respuesta_op[j](resultado);
+
+                // Salir Cliente: Cierra el bucle interno y limpia estado
+                [] seleccionada[i] != 0 && tipo[i]; receive SalirCliente[i](token, j) ->
+                    salir[i] = true;
+                    send respuesta_op[j](ok);
+                    seleccionada[i] = 0;
+                    tipo[i] = 0;
+            }
+        }
+    }
+}
+\end{lstlisting}
