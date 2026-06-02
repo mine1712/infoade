@@ -1,0 +1,31 @@
+% --- PAQUETES DE IDIOMA Y CODIFICACIÓN ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Mejor renderizado de fuentes
+\usepackage[spanish, es-tabla]{babel} 
+
+% --- CONFIGURACIÓN DE FUENTE (Tipo Arial/Helvética) ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault} % Establece la fuente Sans como predeterminada
+
+% --- DISEÑO DE PÁGINA ---
+\usepackage[margin=2.5cm]{geometry} 
+\usepackage{setspace} 
+\setstretch{1.15} % Un interlineado cómodo pero no excesivo
+\usepackage{graphicx} 
+\usepackage{xcolor}   
+
+% --- LISTAS Y TABLAS ---
+\usepackage{enumitem} 
+\usepackage{booktabs} 
+\setlist[enumerate,1]{label=\alph*), ref=\alph*)}
+
+% --- ESTILO DE CAPÍTULOS ---
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\huge}
+  {\filleft\Large\chaptertitlename\ \thechapter}
+  {1ex}
+  {\titlerule\vspace{1ex}\filleft}
+
+% --- SOPORTE PARA SUBRAYADO ---
+\usepackage[normalem]{ulem} % Permite usar \uline{...} que es mejor que \underline

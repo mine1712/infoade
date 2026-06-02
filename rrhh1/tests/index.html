@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST  - Dirección de Recursos Humanos 1</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <div class="header">
+        <h1> Test de Recursos Humanos</h1>
+        <p>Evalúa tus conocimientos respondiendo Verdadero o Falso a las siguientes afirmaciones</p>
+    </div>
+
+    <div id="quiz-container" class="quiz-card" style="display: none;">
+        <div id="game-area">
+            <div class="stats">
+                <span id="cat-label" style="display:none;"></span> 
+                <span id="progress-label"></span>
+            </div>
+            
+            <h2 id="q-text">Cargando pregunta...</h2>
+            
+            <div class="options-grid" id="options-box"></div>
+            
+            <div id="feedback"></div>
+
+            <div class="nav-controls">
+                <button id="prev-btn" onclick="changeQuestion(-1)">⬅️ Anterior</button>
+                <button id="next-btn" onclick="changeQuestion(1)">Siguiente ➡️</button>
+            </div>
+        </div>
+
+        <div id="score-area" class="score-box" style="display: none;">
+            <h2>¡Evaluación Finalizada!</h2>
+            <p class="final-text">Puntuación: <span id="final-score"></span></p>
+            <button class="restart-btn" onclick="location.reload()">Repetir Test</button>
+        </div>
+    </div>
+
+    <script src="preguntas_rrhh.js"></script>
+    
+    <script src="engine.js"></script>
+</body>
+</html>

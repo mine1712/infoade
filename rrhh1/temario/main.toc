@@ -1,0 +1,17 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{\numberline {1}Introducción a la gestión de Recursos Humanos}{2}{}%
+\contentsline {section}{\numberline {1.1}Factores que influencian la gestión de Recursos Humanos}{2}{}%
+\contentsline {subsection}{\numberline {1.1.1}Factores del entorno}{2}{}%
+\contentsline {subsection}{\numberline {1.1.2}Factores organizativos}{3}{}%
+\contentsline {subsection}{\numberline {1.1.3}Factores individuales}{3}{}%
+\contentsline {section}{\numberline {1.2}La gestión de los recursos humanos}{3}{}%
+\contentsline {subsection}{\numberline {1.2.1}Objetivos de la gestión de RR. HH.}{4}{}%
+\contentsline {subsection}{\numberline {1.2.2}Procesos de la gestión de RR. HH.}{4}{}%
+\contentsline {subsection}{\numberline {1.2.3}El departamento y el director de recursos humanos}{4}{}%
+\contentsline {section}{\numberline {1.3}Tendencias actuales}{4}{}%
+\contentsline {chapter}{\numberline {2}Capítulo 2}{5}{}%
+\contentsline {section}{\numberline {2.1}Concepto de Ánalisis del puesto de trabajo}{5}{}%
+\contentsline {section}{\numberline {2.2}Proceso de Realización del Ánalisis del puesto de trabajo}{5}{}%
+\contentsline {subsection}{\numberline {2.2.1}Etapa 1: Objetivos del análisis}{5}{}%
+\contentsline {subsection}{\numberline {2.2.2}Etapa 2: Delimitación del análisis}{6}{}%
+\contentsline {subsection}{\numberline {2.2.3}Etapa 3: Análisis de puestos}{6}{}%
