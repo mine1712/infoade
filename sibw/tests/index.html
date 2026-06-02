@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevTest Pro - Modular</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <div class="header">
+        <h1>🚀 Master Test Técnico</h1>
+        <p>Selecciona una categoría para comenzar</p>
+    </div>
+
+    <div class="category-nav">
+        <button class="nav-btn" onclick="initQuiz('tema1', this)">Tema 1</button>
+        <button class="nav-btn" onclick="initQuiz('tema3', this)">Tema 3</button>
+        <button class="nav-btn" onclick="initQuiz('tema4', this)">Tema 4</button>
+        <button class="nav-btn" onclick="initQuiz('tema5', this)">Tema 5</button>
+        <button class="nav-btn" onclick="initQuiz('html', this)">HTML5</button>
+        <button class="nav-btn" onclick="initQuiz('css', this)">CSS3</button>
+        <button class="nav-btn" onclick="initQuiz('js', this)">JavaScript</button>
+        <button class="nav-btn" onclick="initQuiz('php', this)">PHP / Eventos</button>
+    </div>
+
+    <div id="quiz-container" class="quiz-card">
+        <div id="game-area">
+    <div class="stats">
+        <span id="cat-label"></span>
+        <span id="progress-label"></span>
+    </div>
+    <h2 id="q-text"></h2>
+    <div class="options-grid" id="options-box"></div>
+    <div id="feedback"></div>
+
+    <div class="nav-controls">
+        <button id="prev-btn" onclick="changeQuestion(-1)">⬅️ Anterior</button>
+        <button id="next-btn" onclick="changeQuestion(1)">Siguiente ➡️</button>
+    </div>
+</div>
+
+        <div id="score-area" class="score-box">
+            <h2>¡Examen Finalizado!</h2>
+            <p class="final-text">Puntuación: <span id="final-score"></span></p>
+            <button class="restart-btn" onclick="location.reload()">Elegir otro tema</button>
+        </div>
+    </div>
+
+    <script src="preguntas_html.js"></script>
+    <script src="preguntas_css.js"></script>
+    <script src="preguntas_js.js"></script>
+    <script src="preguntas_php.js"></script>
+    <script src="tema1.js"></script>
+    <script src="tema3.js"></script>
+    <script src="tema4.js"></script>
+    <script src="tema5.js"></script>
+
+    
+    <script src="engine.js"></script>
+</body>
+</html>

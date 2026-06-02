@@ -1,0 +1,112 @@
+:root {
+    --primary: #6366f1;
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f8fafc;
+    --success: #10b981;
+    --error: #ef4444;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.category-nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    color: white;
+}
+
+.nav-btn { background: var(--card); border: 1px solid #334155; }
+.nav-btn.active { background: var(--primary); }
+
+.quiz-card {
+    background: var(--card);
+    padding: 30px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 550px;
+    display: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* --- AQUÍ ESTÁ EL TRUCO PARA QUE NO SALTE --- */
+#game-area {
+    display: flex;
+    flex-direction: column;
+    min-height: 500px; /* Altura mínima constante para todo el test */
+}
+
+#q-text {
+    min-height: 3.5em; /* Reserva espacio para 3 líneas de texto siempre */
+    margin: 10px 0 20px 0;
+    font-size: 1.25rem;
+}
+
+.options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1; /* Hace que las opciones ocupen el espacio central */
+}
+
+.nav-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto; /* Empuja los botones al fondo del contenedor fijo */
+    padding-top: 20px;
+    border-top: 1px solid #334155;
+}
+/* -------------------------------------------- */
+
+.stats { display: flex; justify-content: space-between; opacity: 0.6; font-size: 0.8rem; }
+
+.option-btn {
+    background: #334155;
+    text-align: left;
+    padding: 15px;
+    border: 2px solid transparent;
+}
+
+.option-btn:hover { background: #475569; }
+.correct { background: var(--success) !important; }
+.incorrect { background: var(--error) !important; }
+.disabled { pointer-events: none; }
+
+#feedback { 
+    height: 30px; 
+    margin: 10px 0; 
+    text-align: center; 
+    font-weight: bold; 
+}
+
+#prev-btn { background: #475569; }
+#next-btn { background: var(--primary); }
+
+#prev-btn:disabled, #next-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.score-box { text-align: center; display: none; }
+.final-text { font-size: 2rem; color: var(--primary); }
+.restart-btn { background: var(--primary); width: 100%; margin-top: 20px; }
