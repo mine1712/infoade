@@ -4,24 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InfoADE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; line-height: 1.6; background-color: #f9f9f9; color: #333; }
-        h1 { color: #2c3e50; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px; }
-        ul { list-style: none; padding: 0; }
-        li { margin: 15px 0; background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        a { color: #3498db; text-decoration: none; font-size: 18px; font-weight: bold; }
-        a:hover { color: #2980b9; }
+        :root { --bg: #f4f7f9; --card: #ffffff; --primary: #2c3e50; --accent: #3498db; --muted: #7f8c8d; --radius: 12px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg); color: #333; padding: 40px 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 40px; }
+        header h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 10px; }
+        header p { color: var(--muted); }
+        
+        /* Vista Principal: Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .card { background: var(--card); border-radius: var(--radius); padding: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-decoration: none; color: inherit; position: relative; transition: transform 0.2s; display: flex; flex-direction: column; justify-content: space-between; min-height: 160px; }
+        .card:hover { transform: translateY(-5px); }
+        .card h2 { color: var(--primary); margin-bottom: 8px; }
+        .card p { color: var(--muted); font-size: 0.95rem; margin-bottom: 15px; }
+        .badges { display: flex; gap: 8px; }
+        .badge { font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; background: #edf2f7; font-weight: bold; }
+        .badge.active { background: #e3f2fd; color: var(--accent); }
+
+        /* Vista Asignatura Única */
+        .view-materia { background: var(--card); padding: 40px; border-radius: var(--radius); box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; }
+        .btn-group { display: flex; gap: 20px; justify-content: center; margin: 30px 0; flex-wrap: wrap; }
+        .btn { padding: 15px 30px; border-radius: 8px; color: white; text-decoration: none; font-weight: bold; font-size: 1.1rem; display: inline-flex; align-items: center; gap: 10px; transition: opacity 0.2s; }
+        .btn:hover { opacity: 0.9; }
+        .btn.blue { background: #3498db; }
+        .btn.green { background: #2ecc71; }
+        .back-link { color: var(--muted); text-decoration: none; display: inline-block; margin-top: 20px; }
     </style>
 </head>
 <body>
 
-    <h1>📚 Bienvenido a InfoADE</h1>
-    <p>Administración de asignaturas, temarios y tests:</p>
-    
-    <ul>
-        <li><a href="./sibw/">📘 Sistema de Información Basados en Web</a></li>
-        <li><a href="./dsd/">📘 Diseño de Sistemas Distribuidos</a></li>
-    </ul>
+    <div class="container" id="app">
+        </div>
 
+    <script src="./config.js"></script>
+    <script>
+        // Leer la URL para ver si estamos dentro de una materia (?materia=id)
+        const params = new URLSearchParams(window.location.search);
+        const materiaId = params.get('materia');
+        const app = document.getElementById('app');
+
+        if (materiaId) {
+            // VISTA: DETALLE DE ASIGNATURA
+            const materia = CONFIG.asignaturas.find(a => a.id === materiaId);
+            
+            if (materia) {
+                document.title = `${materia.nombre} - ${CONFIG.title}`;
+                let botones = '';
+                
+                // Si tiene temario, añade el botón dinámicamente
+                if (materia.temario) {
+                    botones += `<a href="${materia.temario}" class="btn green" target="_blank"><i class="fa-solid fa-file-pdf"></i> Ver Temario (PDF)</a>`;
+                }
+                // Si tiene tests, añade el botón dinámicamente
+                if (materia.tests) {
+                    botones += `<a href="${materia.tests}" class="btn blue"><i class="fa-solid fa-square-check"></i> Practicar Tests</a>`;
+                }
+
+                app.innerHTML = `
+                    <div class="view-materia">
+                        <h1>${materia.nombre}</h1>
+                        <p style="color: var(--muted); margin-top: 10px;">${materia.descripcion}</p>
+                        <div class="btn-group">${botones}</div>
+                        <a href="./" class="back-link"><i class="fa-solid fa-arrow-left"></i> Volver al menú principal</a>
+                    </div>
+                `;
+            } else {
+                app.innerHTML = `<h1>Materia no encontrada</h1><a href="./">Volver al inicio</a>`;
+            }
+        } else {
+            // VISTA: MENÚ PRINCIPAL (GRID)
+            document.title = CONFIG.title;
+            let cardsHTML = '';
+
+            CONFIG.asignaturas.forEach(materia => {
+                cardsHTML += `
+                    <a href="?materia=${materia.id}" class="card">
+                        <div>
+                            <h2>${materia.nombre}</h2>
+                            <p>${materia.descripcion}</p>
+                        </div>
+                        <div class="badges">
+                            ${materia.temario ? '<span class="badge active">📚 Temario</span>' : '<span class="badge">❌ No Temario</span>'}
+                            ${materia.tests ? '<span class="badge active">📝 Tests</span>' : '<span class="badge">❌ No Tests</span>'}
+                        </div>
+                    </a>
+                `;
+            });
+
+            app.innerHTML = `
+                <header>
+                    <h1><i class="fa-solid fa-graduation-cap"></i> ${CONFIG.title}</h1>
+                    <p>${CONFIG.subtitle}</p>
+                </header>
+                <main class="grid">${cardsHTML}</main>
+            `;
+        }
+    </script>
 </body>
 </html>
