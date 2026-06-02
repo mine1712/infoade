@@ -14,6 +14,14 @@ const CONFIG = {
             tests: "./sibw/tests/index.html" // Ruta al index de tus tests
         },
         {
+            id: "rrhh1",
+            nombre: "RRHH1",
+            descripcion: "Recursos Humanos I",
+            // Configuramos qué botones queremos que aparezcan
+            temario: false, // Ruta directa al PDF
+            tests: "./rrhh1/tests/index.html" // Ruta al index de tus tests
+        },
+        {
             id: "dsd",
             nombre: "DSD",
             descripcion: "Diseño de Sistemas Distribuidos",
